@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m with context %}
+{% block title %}{{ model.repo_id }} · {{ site_name }}{% endblock %}
+{% block description %}Sourced facts and hardware estimates for {{ model.repo_id }}.{% endblock %}
+{% block content %}
+<article>
+  <p class="eyebrow">{{ model.category_label }} · {{ model.author }}</p>
+  <h1>{{ model.repo_id }}</h1>
+  <p>
+    <a href="{{ model.page_url }}" rel="nofollow noopener">View on Hugging Face</a>
+    {% if model.article %} · <a href="{{ base_path }}/blog/{{ model.article.slug }}/">Read the article</a>{% endif %}
+  </p>
+
+  <h2>Facts</h2>
+  {{ m.facts_table(model.facts) }}
+  <p class="muted">Last checked {{ model.last_checked_at }}.</p>
+
+  <h2 id="hardware">Hardware fit {{ m.badge("estimated") }}</h2>
+  {% if model.hardware %}
+  {{ m.hardware_table(model.hardware, targets) }}
+  <p class="muted">Weights only: KV cache, activations, and runtime overhead are excluded. <a href="{{ base_path }}/methodology/#hardware">See the formula</a>.</p>
+  {% else %}
+  <p>Cannot be estimated: the parameter count is {{ unknown }}.</p>
+  {% endif %}
+
+  {% if model.unknown_labels %}
+  <h2>Not yet verified</h2>
+  <ul>
+    {% for label in model.unknown_labels %}<li>{{ label }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+</article>
+{% endblock %}

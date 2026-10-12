@@ -1,0 +1,23 @@
+{
+  "_id": "fixture00000000000000000004",
+  "id": "FixtureVision/Fixture-VL-3B",
+  "modelId": "FixtureVision/Fixture-VL-3B",
+  "author": "FixtureVision",
+  "sha": "4444444444444444444444444444444444444444",
+  "lastModified": "2026-09-21T07:15:00.000Z",
+  "createdAt": "2026-09-20T12:30:00.000Z",
+  "private": false,
+  "disabled": false,
+  "gated": "manual",
+  "downloads": 210,
+  "likes": 7,
+  "library_name": "transformers",
+  "pipeline_tag": "image-text-to-text",
+  "tags": ["transformers", "image-text-to-text", "en", "license:other"],
+  "cardData": {
+    "license": "other",
+    "language": "en"
+  },
+  "siblings": [],
+  "spaces": []
+}

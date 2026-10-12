@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="intro">
+  <h1>New open-weight models, with receipts</h1>
+  <p class="lede">ModelScopeX tracks new LLM and VLM releases on Hugging Face. Every fact on this site links to its source and says whether it is publisher-declared, independently measured, estimated, or unknown.</p>
+</section>
+
+<section>
+  <h2>Latest articles</h2>
+  {% if articles %}
+  <ul class="post-list">
+    {% for a in articles %}
+    <li>
+      <a class="post-title" href="{{ base_path }}/blog/{{ a.slug }}/">{{ a.title }}</a>
+      <span class="muted">· updated {{ a.updated_date }}</span>
+      {% if a.summary %}<p>{{ a.summary }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">No articles yet.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Recently discovered models</h2>
+  {% if models %}
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Model</th><th>Type</th><th>Created</th><th class="num">Parameters</th></tr></thead>
+    <tbody>
+    {% for m in models %}
+      <tr>
+        <td><a href="{{ base_path }}/models/{{ m.slug }}/">{{ m.repo_id }}</a></td>
+        <td>{{ m.category_label }}</td>
+        <td>{{ m.created_display }}</td>
+        <td class="num">{{ m.parameters_display }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <p><a href="{{ base_path }}/models/">All {{ model_count }} models →</a></p>
+  {% else %}
+  <p class="muted">No models discovered yet.</p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m with context %}
+{% block title %}Methodology · {{ site_name }}{% endblock %}
+{% block content %}
+<article class="prose">
+  <h1>Methodology</h1>
+  <p class="lede">How ModelScopeX collects facts, labels them, and keeps them current.</p>
+
+  <h2>Where facts come from</h2>
+  <p>New repositories are discovered through the public Hugging Face API, limited to an allowlist of publishers and to the LLM (<code>text-generation</code>) and VLM (<code>image-text-to-text</code>) pipeline tags. Quantized re-uploads (GGUF, AWQ, GPTQ, MLX and similar) are skipped. Facts are read from typed metadata fields only. Text inside model cards is never treated as instructions.</p>
+
+  <h2>Verification status</h2>
+  <ul>
+    <li>{{ m.badge("publisher_declared") }} stated by the model publisher in its own Hub metadata or announcement. Not checked independently.</li>
+    <li>{{ m.badge("independently_measured") }} measured by ModelScopeX, with dataset, metric, hardware, model revision and script version recorded.</li>
+    <li>{{ m.badge("estimated") }} computed with a published formula. Never presented as a measurement.</li>
+    <li>{{ m.badge("unknown") }} not available. Shown as “{{ unknown }}”. Nothing is guessed.</li>
+  </ul>
+
+  <h2 id="hardware">Hardware estimates</h2>
+  <p>{{ formula }}. {{ exclusions }}</p>
+  <p>Current targets:</p>
+  <ul>
+    {% for t in targets %}<li>{{ t.label }}: budget {{ "%.1f"|format(t.budget) }} GB for weights</li>{% endfor %}
+  </ul>
+
+  <h2>History and updates</h2>
+  <p>Facts are stored append-only: when a publisher changes a value, the new value is added and the old one is kept. License, parameter count and gated-access changes mark the related article for review. Articles are versioned in Git, so every edit is traceable.</p>
+
+  <h2>Editorial process</h2>
+  <p>Drafts are generated from stored facts. A person reviews and edits each article before it is approved; drafts are never published.</p>
+</article>
+{% endblock %}

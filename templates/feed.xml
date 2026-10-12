@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>{{ site_name }}</title>
+  <link>{{ base_url }}/</link>
+  <description>Evidence-backed notes on new open-weight LLM and VLM releases.</description>
+  <lastBuildDate>{{ build_rfc822 }}</lastBuildDate>
+{% for a in articles %}
+  <item>
+    <title>{{ a.title }}</title>
+    <link>{{ base_url }}/blog/{{ a.slug }}/</link>
+    <guid isPermaLink="true">{{ base_url }}/blog/{{ a.slug }}/</guid>
+    <pubDate>{{ a.rfc822 }}</pubDate>
+    <description>{{ a.summary }}</description>
+  </item>
+{% endfor %}
+</channel>
+</rss>

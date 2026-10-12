@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Models · {{ site_name }}{% endblock %}
+{% block content %}
+<h1>Models</h1>
+<p class="lede">Every model discovered so far, newest first. Values marked unknown were not declared by the publisher.</p>
+{% if models %}
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Model</th><th>Type</th><th>Created</th><th class="num">Parameters</th><th>License</th><th>Article</th></tr></thead>
+  <tbody>
+  {% for m in models %}
+    <tr>
+      <td><a href="{{ base_path }}/models/{{ m.slug }}/">{{ m.repo_id }}</a></td>
+      <td>{{ m.category_label }}</td>
+      <td>{{ m.created_display }}</td>
+      <td class="num">{{ m.parameters_display }}</td>
+      <td>{{ m.license_display }}</td>
+      <td>{% if m.article %}<a href="{{ base_path }}/blog/{{ m.article.slug }}/">Read</a>{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p class="muted">No models discovered yet.</p>
+{% endif %}
+{% endblock %}

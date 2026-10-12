@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} · {{ site_name }}{% endblock %}
+{% block description %}{{ article.summary or article.title }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block content %}
+<article class="post">
+  <p class="eyebrow">Updated {{ article.updated_date }}</p>
+  <h1>{{ article.title }}</h1>
+  {% if article.model %}
+  <p><a href="{{ base_path }}/models/{{ article.model.slug }}/">Model facts page</a></p>
+  {% endif %}
+
+  <div class="prose">
+    {{ article.html | safe }}
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources">
+    {% for url in article.sources %}<li><a href="{{ url }}" rel="nofollow noopener">{{ url }}</a></li>{% endfor %}
+  </ul>
+</article>
+{% endblock %}

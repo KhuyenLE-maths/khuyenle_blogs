@@ -1,0 +1,27 @@
+[site]
+name = "ModelScopeX Blog"
+base_url = "http://localhost:8000"   # changed at deploy time (Milestone 3)
+
+[discover]
+authors = [
+  "Qwen", "meta-llama", "google", "mistralai", "deepseek-ai", "microsoft",
+  "nvidia", "ibm-granite", "zai-org", "moonshotai", "openbmb", "allenai",
+  "tencent", "XiaomiMiMo", "inclusionAI", "baidu", "PaddlePaddle",
+]
+categories = ["text-generation", "image-text-to-text"]
+lookback_days = 30
+max_models = 200
+exclude_name_patterns = ["gguf", "awq", "gptq", "mlx", "bnb", "int4", "int8"]
+
+[hardware.mac]
+label = "MacBook Pro M1 Pro"
+memory_gb = 16          # confirm in Milestone 0
+usable_fraction = 0.7   # heuristic share of unified memory available for weights
+
+[hardware.admin1]
+label = "admin1, RTX 4090"
+memory_gb = 24
+usable_fraction = 0.9
+
+[publishing]
+paused = false

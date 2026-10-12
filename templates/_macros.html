@@ -1,0 +1,43 @@
+{% macro badge(status) %}<span class="badge badge-{{ status }}">{{ STATUS_LABELS[status] }}</span>{% endmacro %}
+
+{% macro facts_table(facts) %}
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Field</th><th>Value</th><th>Status</th><th>Source</th></tr></thead>
+  <tbody>
+  {% for f in facts %}
+    <tr>
+      <td>{{ f.label }}</td>
+      <td class="{{ 'is-unknown' if f.status == 'unknown' else '' }}">{{ f.display }}</td>
+      <td>{{ badge(f.status) }}</td>
+      <td>{% if f.source_url %}<a href="{{ f.source_url }}" rel="nofollow noopener">{{ f.source_name }}</a>{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endmacro %}
+
+{% macro hardware_table(rows, targets) %}
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Precision</th><th class="num">Weights (GB)</th>
+      {% for t in targets %}<th>{{ t.label }}<br><span class="muted">budget {{ "%.1f"|format(t.budget) }} GB</span></th>{% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+  {% for r in rows %}
+    <tr>
+      <td>{{ r.precision }}</td>
+      <td class="num">{{ "%.2f"|format(r.weights_gb) }}</td>
+      {% for t in targets %}
+        <td>{% if r.fits[t.name] %}<span class="fit-yes">likely fits</span>{% else %}<span class="fit-no">does not fit</span>{% endif %}</td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endmacro %}

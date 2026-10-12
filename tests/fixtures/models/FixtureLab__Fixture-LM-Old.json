@@ -1,0 +1,27 @@
+{
+  "_id": "fixture00000000000000000003",
+  "id": "FixtureLab/Fixture-LM-Old",
+  "modelId": "FixtureLab/Fixture-LM-Old",
+  "author": "FixtureLab",
+  "sha": "3333333333333333333333333333333333333333",
+  "lastModified": "2026-07-02T08:00:00.000Z",
+  "createdAt": "2026-07-01T09:00:00.000Z",
+  "private": false,
+  "disabled": false,
+  "gated": false,
+  "downloads": 90,
+  "likes": 3,
+  "library_name": "transformers",
+  "pipeline_tag": "text-generation",
+  "tags": ["transformers", "safetensors", "text-generation", "license:mit"],
+  "cardData": {
+    "license": "mit",
+    "language": "en"
+  },
+  "safetensors": {
+    "parameters": {"BF16": 494032768},
+    "total": 494032768
+  },
+  "siblings": [],
+  "spaces": []
+}
