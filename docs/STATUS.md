@@ -17,7 +17,19 @@ Full flow exercised against the real Hugging Face API from this MacBook:
 - `msx build` → 7 pages (3 models, 1 article), incl. sitemap.xml and feed.xml.
 - `msx preview --port 8001` → every page (`/`, `/models/`, model page, `/blog/...`, `/methodology/`, sitemap, feed, css)
   returns HTTP 200; the model page renders the facts table, the commit sha, and the hardware estimate. Verified with real HTTP requests.
-- `config.toml` `base_url` set to `http://localhost:8001` for this preview because another process held port 8000.
+## Deployed (2026-10-12) — Milestone 3, first publish
+
+Live at **https://khuyenle-maths.github.io/khuyenle_blogs/** (verified: every page returns HTTP 200,
+facts render). Approved by the owner in-session.
+
+- GitHub repo `KhuyenLE-maths/khuyenle_blogs` (public). `main` = source (incl. `data/msx.sqlite`);
+  `gh-pages` = built `site/` + `.nojekyll`. Pages serves the `gh-pages` branch root.
+- Project site → `base_url = https://khuyenle-maths.github.io/khuyenle_blogs`; templates already prefix
+  internal links with the URL path (`base_path`), so sub-path serving works with no code change.
+- `Qwen/Qwen3.8-Flash-Next` set to `published` with `published_at`.
+
+Redeploy after new content: `msx build`, then push the contents of `site/` (plus a `.nojekyll`) to the
+`gh-pages` branch. For local `msx preview`, temporarily set `base_url` back to `http://localhost:8000`.
 
 ## Milestone 0: audit
 
