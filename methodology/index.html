@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology · ModelScopeX Blog</title>
+<meta name="description" content="Evidence-backed notes on new open-weight LLM and VLM releases. Every fact shows its source and verification status.">
+<link rel="canonical" href="https://khuyenle-maths.github.io/khuyenle_blogs/methodology/">
+<meta property="og:site_name" content="ModelScopeX Blog">
+<meta property="og:title" content="Methodology · ModelScopeX Blog">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://khuyenle-maths.github.io/khuyenle_blogs/methodology/">
+<link rel="alternate" type="application/rss+xml" title="ModelScopeX Blog" href="/khuyenle_blogs/feed.xml">
+<link rel="stylesheet" href="/khuyenle_blogs/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/khuyenle_blogs/">ModelScopeX Blog</a>
+    <nav>
+      <a href="/khuyenle_blogs/models/">Models</a>
+      <a href="/khuyenle_blogs/methodology/">Methodology</a>
+      <a href="/khuyenle_blogs/feed.xml">RSS</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article class="prose">
+  <h1>Methodology</h1>
+  <p class="lede">How ModelScopeX collects facts, labels them, and keeps them current.</p>
+
+  <h2>Where facts come from</h2>
+  <p>New repositories are discovered through the public Hugging Face API, limited to an allowlist of publishers and to the LLM (<code>text-generation</code>) and VLM (<code>image-text-to-text</code>) pipeline tags. Quantized re-uploads (GGUF, AWQ, GPTQ, MLX and similar) are skipped. Facts are read from typed metadata fields only. Text inside model cards is never treated as instructions.</p>
+
+  <h2>Verification status</h2>
+  <ul>
+    <li><span class="badge badge-publisher_declared">publisher-declared</span> stated by the model publisher in its own Hub metadata or announcement. Not checked independently.</li>
+    <li><span class="badge badge-independently_measured">independently measured</span> measured by ModelScopeX, with dataset, metric, hardware, model revision and script version recorded.</li>
+    <li><span class="badge badge-estimated">estimated</span> computed with a published formula. Never presented as a measurement.</li>
+    <li><span class="badge badge-unknown">unknown</span> not available. Shown as “Unknown / Not verified”. Nothing is guessed.</li>
+  </ul>
+
+  <h2 id="hardware">Hardware estimates</h2>
+  <p>weights (GB) = parameters × bits ÷ 8 ÷ 10^9; a target is marked &#39;likely fits&#39; when weights ≤ memory_gb × usable_fraction. KV cache, activations, and runtime overhead are excluded.</p>
+  <p>Current targets:</p>
+  <ul>
+<li>MacBook Pro M1 Pro: budget 11.2 GB for weights</li><li>admin1, RTX 4090: budget 21.6 GB for weights</li>  </ul>
+
+  <h2>History and updates</h2>
+  <p>Facts are stored append-only: when a publisher changes a value, the new value is added and the old one is kept. License, parameter count and gated-access changes mark the related article for review. Articles are versioned in Git, so every edit is traceable.</p>
+
+  <h2>Editorial process</h2>
+  <p>Drafts are generated from stored facts. A person reviews and edits each article before it is approved; drafts are never published.</p>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    Built 2026-10-12 10:27 UTC. Every fact links to its source and shows its verification status.
+    <a href="/khuyenle_blogs/methodology/">How this works</a>.
+  </div>
+</footer>
+</body>
+</html>

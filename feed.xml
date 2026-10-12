@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>ModelScopeX Blog</title>
+  <link>https://khuyenle-maths.github.io/khuyenle_blogs/</link>
+  <description>Evidence-backed notes on new open-weight LLM and VLM releases.</description>
+  <lastBuildDate>Mon, 12 Oct 2026 10:27:57 +0000</lastBuildDate>
+  <item>
+    <title>Qwen/Qwen3.8-Flash-Next</title>
+    <link>https://khuyenle-maths.github.io/khuyenle_blogs/blog/qwen-qwen3-8-flash-next/</link>
+    <guid isPermaLink="true">https://khuyenle-maths.github.io/khuyenle_blogs/blog/qwen-qwen3-8-flash-next/</guid>
+    <pubDate>Mon, 12 Oct 2026 09:41:37 +0000</pubDate>
+    <description>Qwen/Qwen3.8-Flash-Next is a Hugging Face repository from Qwen, discovered in the VLM category. It was created on 2026-08-24. Its declared license is other. Every fact below comes from the publisher&#39;s own metadata on th…</description>
+  </item>
+</channel>
+</rss>
