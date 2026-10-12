@@ -1,6 +1,23 @@
 # Status
 
-Last updated: 2026-10-12. Milestone 1 code complete; live-data run still to be done on the Mac.
+Last updated: 2026-10-12. Milestone 1 complete: code, tests, and the first live-data run all done on the Mac.
+
+## Live run (2026-10-12, on the Mac)
+
+Full flow exercised against the real Hugging Face API from this MacBook:
+
+- Reachability: `GET https://huggingface.co/api/models?limit=1` → HTTP 200. `HF_TOKEN` not set (public access only).
+- `pytest -q` → 15 passed, 1 deselected.
+- `msx discover --author Qwen --max-models 3 --lookback-days 365` → checked 3, 3 new models, 30 new claims
+  (default 30-day lookback returned 0; Qwen had no repos created in the last 30 days).
+  Models: `Qwen/Qwen-Drive-1.0-4B`, `Qwen/Qwen3.8-Flash-Next`, `Qwen/Qwen3.8-Flash-Next-FP8`.
+  (These are post-training-cutoff releases; existence confirmed directly against the API — fabricated repo ids return an error, these return full metadata.)
+- `msx draft Qwen/Qwen3.8-Flash-Next` → `content/articles/qwen-qwen3-8-flash-next.md` (fact-only, all `publisher_declared`, unknowns kept unknown).
+- `msx approve qwen-qwen3-8-flash-next` → approved.
+- `msx build` → 7 pages (3 models, 1 article), incl. sitemap.xml and feed.xml.
+- `msx preview --port 8001` → every page (`/`, `/models/`, model page, `/blog/...`, `/methodology/`, sitemap, feed, css)
+  returns HTTP 200; the model page renders the facts table, the commit sha, and the hardware estimate. Verified with real HTTP requests.
+- `config.toml` `base_url` set to `http://localhost:8001` for this preview because another process held port 8000.
 
 ## Milestone 0: audit
 
@@ -52,9 +69,9 @@ model page, an unknown-heavy model page, the article page, and a 390 px mobile v
 
 ## Not done
 
-- Live run on real Hugging Face data (KICKOFF 1.10, second bullet). Needs network access to huggingface.co.
-- `pytest -m network` passing.
+- `pytest -m network` passing (not yet run against the live API as a test).
 - Fixtures are synthetic (fictional models), not recorded responses; see `tests/fixtures/README.md`.
+- Public deployment (Milestone 3): not started; needs approval, a host, and a `base_url` change.
 - `data/msx.sqlite` is not shipped; it is created on the first command.
 
 ## Deviations from the layout in CLAUDE.md
@@ -71,5 +88,7 @@ model page, an unknown-heavy model page, the article page, and a 390 px mobile v
 
 ## Next step
 
-On the Mac: set up the venv, run `pytest -q`, then `msx discover --author Qwen --max-models 3`,
-draft and approve one real model, `msx build`, `msx preview`, and record the results here.
+Milestone 1 is done. The recommended next step is a broader `msx discover` run (more authors, the
+default 30-day lookback) to fill the model directory with current releases, then decide on Milestone 3
+publishing: pick a host (KICKOFF names GitHub Pages), set `base_url`, and deploy — all of which need
+my approval and a `git push`.

@@ -1,6 +1,6 @@
 [site]
 name = "ModelScopeX Blog"
-base_url = "http://localhost:8000"   # changed at deploy time (Milestone 3)
+base_url = "https://khuyenle-maths.github.io/khuyenle_blogs"   # GitHub Pages project site (Milestone 3)
 
 [discover]
 authors = [
